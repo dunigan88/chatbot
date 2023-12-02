@@ -3,7 +3,7 @@ import express from 'express'
 import cors from "cors"
 
 const openai = new OpenAIApi({
-    apiKey: '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'
+    apiKey: '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'
 })
 
 const app = express()
@@ -13,12 +13,15 @@ app.use(express.json())
 app.use(cors())
 
 app.post('/', async (req, res) => {
-    const {message} = req.body
+    const { messages } = req.body
 
+    console.log(messages)
     const completion = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
-            {role: 'user', content: `${message}`}
+            // initial prompt to setup the system
+            {'role': 'system', 'content': 'you are batman'},
+            ...messages
         ]
     })
     
