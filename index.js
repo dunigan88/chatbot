@@ -1,10 +1,10 @@
 import OpenAIApi from 'openai'
 import express from 'express'
 import cors from 'cors'
-import fs from 'fs'
+import 'dotenv/config'
 
 const openai = new OpenAIApi({
-    apiKey: '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'
+    apiKey: process.env.GPT_API_KEY
 })
 
 const app = express()
@@ -30,6 +30,6 @@ app.post('/', async (req, res) => {
     })
 })
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log(`http://localhost:${port}`)
 })
