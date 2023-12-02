@@ -29,6 +29,9 @@
         const form = document.querySelector('form')
         form.addEventListener('submit', (e) => {
             e.preventDefault()
+            if (message.value == '') {
+                return false
+            }
             const messagetext = message.value
             const newMessage = {
                 'role': 'user', 'content': `${messagetext}`

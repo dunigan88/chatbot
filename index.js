@@ -13,16 +13,6 @@ const port = 3000
 app.use(express.json())
 app.use(cors())
 
-// app.get('/', (req, res) => {
-//     fs.readFile('./index.html', 'utf8', (err, html) => {
-//         if (err) {
-//             res.status(500).send('sorry, out of order')
-//         }
-
-//         res.send(html)
-//     })
-// })
-
 app.use(express.static('public'))
 
 app.post('/', async (req, res) => {
