@@ -13,16 +13,13 @@ app.use(express.json())
 app.use(cors())
 
 app.post('/', async (req, res) => {
-    const { messages } = req.body
+    let { messages } = req.body
+    messages = [{'role': 'system', 'content': 'you are batman'}, ...messages]
 
     console.log(messages)
     const completion = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
-        messages: [
-            // initial prompt to setup the system
-            {'role': 'system', 'content': 'you are batman'},
-            ...messages
-        ]
+        messages: messages
     })
     
     res.json({
