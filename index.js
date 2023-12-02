@@ -21,7 +21,7 @@ app.post('/', async (req, res) => {
 
     console.log(messages)
     const completion = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
+        model: process.env.GPT_MODEL,
         messages: messages
     })
     
