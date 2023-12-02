@@ -13,8 +13,7 @@
         <h1>GPT Chatbot</h1>
         <div class="content">
             <div id="chat-log">
-                <div class="message message--sent"><div class="message__text">hey</div></div>
-                <div class="message message--received"><div class="message__text">Hello there! How can I assist you today?</div></div>
+
             </div>
             <form action="" class="input">
                 <input class="inputBox" type="text" name="message" id="message">
@@ -44,7 +43,8 @@
             messageElement.innerHTML = `<div class="message__text">${messagetext}</div>`
             chatLog.appendChild(messageElement)
             chatLog.scrollTop = chatLog.scrollHeight
-            fetch('http://localhost:3000', {
+            // fetch('http://localhost:3000', {
+            fetch('https://tame-lime-jay-garb.cyclic.app/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
