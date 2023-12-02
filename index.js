@@ -17,7 +17,7 @@ app.use(express.static('public'))
 
 app.post('/', async (req, res) => {
     let { messages } = req.body
-    messages = [{'role': 'system', 'content': 'You are a curious assistant that likes to ask questions.'}, ...messages]
+    messages = [{'role': 'system', 'content': process.env.SYSTEM_PROMPT}, ...messages]
 
     console.log(messages)
     const completion = await openai.chat.completions.create({
