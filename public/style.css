@@ -37,6 +37,7 @@ main {
 #chat-log {
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 .message {
