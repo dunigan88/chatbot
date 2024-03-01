@@ -42,8 +42,8 @@
             messageElement.innerHTML = `<div class="message__text">${messagetext}</div>`
             chatLog.appendChild(messageElement)
             chatLog.scrollTop = chatLog.scrollHeight
-            // fetch('http://localhost:3000', {
-            fetch('https://difficult-bee-cowboy-hat.cyclic.app/', {
+            fetch('http://localhost:3000', {
+            // fetch('https://difficult-bee-cowboy-hat.cyclic.app/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
