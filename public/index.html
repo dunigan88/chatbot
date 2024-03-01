@@ -18,12 +18,29 @@
                 <input class="inputBox" type="text" name="message" id="message" placeholder="Type something to begin chat...">
                 <button class="submitBtn" type="submit">Send</button>
             </form>
+            <button id="saveBtn" class="saveBtn" type="submit">Save Messages</button>
         </div>
     </main>
 	<script>
         let messages = []
         const chatLog = document.getElementById('chat-log')
         const message = document.getElementById('message')
+        const saveMessage = document.getElementById('saveBtn')
+        saveMessage.addEventListener('click', (e) => {
+            e.preventDefault()
+            fetch('/add-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    messages
+                })
+            }).then((res) => {
+                console.log(messages)
+                alert("Messages saved successfully.")
+            })
+        })
         const form = document.querySelector('form')
         form.addEventListener('submit', (e) => {
             e.preventDefault()

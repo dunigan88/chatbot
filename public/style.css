@@ -67,3 +67,14 @@ main {
     border-radius: 5px;
     color: white;
 }
+
+.saveBtn {
+    border: none;
+    background: #02a7ed;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+}
