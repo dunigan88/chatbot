@@ -2,6 +2,14 @@ import OpenAIApi from 'openai'
 import express from 'express'
 import cors from 'cors'
 import 'dotenv/config'
+import mongoose from 'mongoose'
+import Message from './models/message.js'
+
+mongoose.connect(process.env.DB_URI)
+.then((res) => {
+    console.log('Connected to DB')
+})
+.catch((err) => console.log(err))
 
 const openai = new OpenAIApi({
     apiKey: process.env.GPT_API_KEY
@@ -14,6 +22,21 @@ app.use(express.json())
 app.use(cors())
 
 app.use(express.static('public'))
+
+app.post('/add-message', (req, res) => {
+    console.log(req.body)
+    const message = new Message({
+        messages: req.body.messages
+    })
+
+    message.save()
+    .then((result) => {
+        res.send(result)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
 
 app.post('/', async (req, res) => {
     let { messages } = req.body
