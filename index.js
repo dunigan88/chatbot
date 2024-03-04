@@ -26,7 +26,8 @@ app.use(express.static('public'))
 app.post('/add-message', (req, res) => {
     console.log(req.body)
     const message = new Message({
-        messages: req.body.messages
+        messages: req.body.messages,
+        userID: req.body.userID
     })
 
     message.save()

@@ -14,19 +14,23 @@
             <div id="chat-log">
 
             </div>
-            <form action="" class="input">
+            <form action="" class="input" id="sendMessage">
                 <input class="inputBox" type="text" name="message" id="message" placeholder="Type something to begin chat...">
                 <button class="submitBtn" type="submit">Send</button>
             </form>
-            <button id="saveBtn" class="saveBtn" type="submit">Save Messages</button>
+            <form action="" class="saveInput" id="saveMessages">
+                <input type="text" name="id" id="idInput" placeholder="Please enter your ID">
+                <button id="saveBtn" class="saveBtn" type="submit">Save Messages</button>
+            </form>
         </div>
     </main>
 	<script>
         let messages = []
         const chatLog = document.getElementById('chat-log')
         const message = document.getElementById('message')
-        const saveMessage = document.getElementById('saveBtn')
-        saveMessage.addEventListener('click', (e) => {
+        const id = document.getElementById('idInput')
+        const saveMessage = document.getElementById('saveMessages')
+        saveMessage.addEventListener('submit', (e) => {
             e.preventDefault()
             fetch('/add-message', {
                 method: 'POST',
@@ -34,14 +38,15 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    messages
+                    messages: messages,
+                    userID: id.value
                 })
             }).then((res) => {
                 console.log(messages)
                 alert("Messages saved successfully.")
             })
         })
-        const form = document.querySelector('form')
+        const form = document.getElementById('sendMessage')
         form.addEventListener('submit', (e) => {
             e.preventDefault()
             if (message.value == '') {
